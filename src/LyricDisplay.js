@@ -1,4 +1,5 @@
 import React from 'react'
+import './LyricDisplay.css'
 
 function LyricDisplay({ handleLyricDisplay, lyrics }) {
   return (
@@ -9,17 +10,11 @@ function LyricDisplay({ handleLyricDisplay, lyrics }) {
       <p>Song Title</p>
       <input type="text" id="song-title"/>
       <button type="button" onClick={handleLyricDisplay}>Search</button>
-      <p> {lyrics} </p>
+      <div className="lyrics"> 
+        {lyrics} 
+      </div>
     </div>
   )
 }
-
-// function getSongTitle() {
-//   var songTitle = document.getElementById("song-title").value
-// }
-
-// function getArtist() {
-//   var artist = document.getElementById("artist").value
-// }
 
 export default LyricDisplay

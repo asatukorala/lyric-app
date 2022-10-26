@@ -10,14 +10,7 @@ import { useState } from 'react';
 function App() {
   const [lyrics, setLyrics] = useState(null)
   const [trackID, setTrackID] = useState(null)
-
-  // fetchTrackID = () => {
-  //   fetch("http://api.musixmatch.com/ws/1.1/track.search?apikey=140e78b9724d3b447cc2cbee1a92bf2f&q_artist=toto&q_track=rosanna")
-  //   .then((response) => response.json)
-  //   .then(App => {
-  //     this.setState({ trackID: App })
-  //   })
-  // }
+  const [renderList, setRenderList] = useState(null)
 
   const handleLyricDisplay = event => {
    // const [lyrics, trackID] = React.useState(null)
@@ -30,14 +23,6 @@ function App() {
     let res = fetch(`http://api.musixmatch.com/ws/1.1/track.search?apikey=${env.API_URL}&q_artist=${artist}&q_track=${songTitle}`)
       .then(res => res.json())
       .then(res => setTrackID(res['message']['body']['track_list'][0]['track']['track_id']))
-// Pablo recommends separating the above section and using addVariable
-    // const addVariable = () => {
-    //   setTrackID([trackID])
-    // }  
-
-
-
-    
   }
   
   const handleGetLyrics = trackID => {
@@ -50,15 +35,16 @@ function App() {
   })
   }
 
-    // console.log(trackID)
-    if (trackID != null) {
-      console.log(trackID)
-      handleGetLyrics(trackID)
-      if (lyrics === null) {
-        setLyrics("Sorry. Lyrics are not available.")
-      }
+  if (trackID != null) {
+    console.log(trackID)
+    handleGetLyrics(trackID)
+    if (lyrics === null) {
+      setLyrics("Sorry. Lyrics are not available.")
     } 
-    // const { lyrics } = this.state.lyric
+  }
+
+  // console.log(lyrics)
+
   return (
     <div className="App">
       <LyricDisplay 
