@@ -27,10 +27,10 @@ function App() {
     var artist = document.getElementById("artist").value
     console.log(songTitle, artist)
     // const trackID = getTrackID(songTitle, artist)
-    const res = fetch("http://api.musixmatch.com/ws/1.1/track.search?apikey=${env.API_URL}&q_artist=toto&q_track=rosanna")
+    const res = fetch(`http://api.musixmatch.com/ws/1.1/track.search?apikey=${env.API_URL}&q_artist=${artist}&q_track=${songTitle}`)
       .then(res => res.json())
       .then(res => setTrackID(res['message']['body']['track_list'][0]['track']['track_id']))
-      // .then(res => this.state.trackID = res['message']['body']['track_list'][0]['track']['track_id'])
+      
   }
 
     // const { lyrics } = this.state.lyrics
