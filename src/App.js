@@ -9,7 +9,7 @@ import { useState } from 'react';
 
 function App() {
   const [lyrics, setLyrics] = useState('')
-  const [trackID, setTrackID] = useState('44')
+  const [trackID, setTrackID] = useState('')
 
   // fetchTrackID = () => {
   //   fetch("http://api.musixmatch.com/ws/1.1/track.search?apikey=140e78b9724d3b447cc2cbee1a92bf2f&q_artist=toto&q_track=rosanna")
@@ -27,7 +27,7 @@ function App() {
     var artist = document.getElementById("artist").value
     console.log(songTitle, artist)
     // const trackID = getTrackID(songTitle, artist)
-    const res = fetch("http://api.musixmatch.com/ws/1.1/track.search?apikey=140e78b9724d3b447cc2cbee1a92bf2f&q_artist=toto&q_track=rosanna")
+    const res = fetch("http://api.musixmatch.com/ws/1.1/track.search?apikey=${env.API_URL}&q_artist=toto&q_track=rosanna")
       .then(res => res.json())
       .then(res => setTrackID(res['message']['body']['track_list'][0]['track']['track_id']))
       // .then(res => this.state.trackID = res['message']['body']['track_list'][0]['track']['track_id'])
