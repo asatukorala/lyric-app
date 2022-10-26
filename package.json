@@ -18,7 +18,8 @@
     "build": "react-dotenv && react-scripts build",
     "serve": "react-dotenv && serve build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "npm run build; cp build/index.html build/404.html; surge build lyricsapp.surge.sh"
   },
   "eslintConfig": {
     "extends": [
