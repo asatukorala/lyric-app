@@ -3,6 +3,7 @@ import './App.css';
 import LyricDisplay from './LyricDisplay';
 import env from "react-dotenv"
 import { useState } from 'react';
+//import Songs from './songs';
 // import fetch from 'node-fetch'
 // import { useState, useEffect } from "react"
 // import useFetch from "react-fetch-hook"
@@ -12,6 +13,23 @@ function App() {
   const [trackID, setTrackID] = useState(null)
   const [renderList, setRenderList] = useState(null)
 
+  const handleLyricPhrase = event => {
+     const newContent = event.target.value
+     var songPhrase = document.getElementById("song-phrase").value
+     console.log(songPhrase)
+    //  console.log(res['message']['body']['track_list'][0]['track']['track_name'], res['message']['body']['track_list'][0]['track']['artist_name'])     
+     let res = fetch(`http://api.musixmatch.com/ws/1.1/track.search?apikey=${process.env.REACT_APP_API_URL}&q_lyrics=${songPhrase}`)
+
+    //  , {
+    //    mode: 'no-cors',
+    //    headers: {
+    //      'Access-Control-Allow-Origin':'*'
+    //    }
+    //  })
+       .then(res => res.json())
+       .then(res => setTrackID(res['message']['body']['track_list'][0]['track']['track_id']))
+   }
+  
   const handleLyricDisplay = event => {
    // const [lyrics, trackID] = React.useState(null)
     const newContent = event.target.value
@@ -20,13 +38,27 @@ function App() {
     var artist = document.getElementById("artist").value
     console.log(songTitle, artist)
     // const trackID = getTrackID(songTitle, artist)
-    let res = fetch(`https://api.musixmatch.com/ws/1.1/track.search?apikey=${env.API_URL}&q_artist=${artist}&q_track=${songTitle}`)
+    fetch(`https://api.musixmatch.com/ws/1.1/track.search?apikey=${process.env.REACT_APP_API_URL}&q_artist=${artist}&q_track=${songTitle}`)
+
+    // , {
+    //   mode: 'no-cors',
+    //   headers: {
+    //     'Access-Control-Allow-Origin':'*'
+    //   }
+    // }
+    // )
       .then(res => res.json())
       .then(res => setTrackID(res['message']['body']['track_list'][0]['track']['track_id']))
   }
   
   const handleGetLyrics = trackID => {
-    const res = fetch(`https://api.musixmatch.com/ws/1.1/track.lyrics.get?apikey=${env.API_URL}&track_id=${trackID}`)
+    const res = fetch(`https://api.musixmatch.com/ws/1.1/track.lyrics.get?apikey=${process.env.REACT_APP_API_URL}&track_id=${trackID}`)
+    // , {
+    //   mode: 'no-cors',
+    //   headers: {
+    //     'Access-Control-Allow-Origin':'*'
+    //   }
+    // })
       .then(res => res.json())
       .then(res => {
         if (res['message']['header']['status_code'] === 200) {
@@ -49,11 +81,9 @@ function App() {
     <div className="App">
       <LyricDisplay 
         handleLyricDisplay={handleLyricDisplay}
+        handleLyricPhrase={handleLyricPhrase}
         lyrics={lyrics}
       />
-      <div>
-        {trackID}
-      </div>
     </div>
   )
 
