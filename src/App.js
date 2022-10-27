@@ -20,7 +20,7 @@ function App() {
      console.log(songPhrase)  
      setArtist("")
      setSongTitle("")
-     let res = fetch(`http://api.musixmatch.com/ws/1.1/track.search?apikey=${process.env.REACT_APP_API_URL}&q_lyrics=${songPhrase}`)
+     let res = fetch(`https://api.musixmatch.com/ws/1.1/track.search?apikey=${process.env.REACT_APP_API_URL}&q_lyrics=${songPhrase}`)
 
     //  , {
     //    mode: 'no-cors',
