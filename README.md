@@ -6,10 +6,11 @@
 An app where users can search for song lyrics with the fields "Artist" and "Song Title". The user will also have the opportunity to search by "Song Phrase".
 
 ## High Level Design
-The song title and artist is recieved from the handler handleLyricDisplay which is passed down to the handler handleGetLyrics that gets the lyrics. Both handlers are making fetch requests to the Musixmatch API.  
+The song title and artist is recieved from the handler handleLyricDisplay which is passed down to the handler handleGetLyrics that gets the lyrics. Both handlers are making fetch requests to the Musixmatch API. There is also the handler handleLyricPhrase for the user to search by phrases. 
 
 ## Technical Notes
 Wireframes:
+![Wireframes](https://i.imgur.com/9vT4beV.jpg)
 
 Trello Board 25/10:
 ![TB2510](https://i.imgur.com/zaAP9rc.jpeg)
@@ -30,7 +31,14 @@ The first major stumbling block for me was was getting and passing the trackID v
 
 Displaying the lyrics in a line by line way was very challenging. I tried using regular expressions for a long time which was not doing anything. I eventually found the solution in CSS.
 
+CORS error.
+
 # :persevere: Lessons learnt
+Begun work on the CSS earlier. 
 
 # :white_check_mark: Future features
 - Use the Spotify API to display a Spotify embed of the song. 
+- Get and display the artist and song title when user searches by phrase.
+- Catch the TypeError and throw an exception. 
+- Fix it getting broken after using it for a while.
+- Fix artist and song title displaying as a lyric heading when it isn't a result.
